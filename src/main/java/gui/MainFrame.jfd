@@ -1,0 +1,20 @@
+JFDML JFormDesigner: "8.0.1.0.199" Java: "17.0.5" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundlePackage": "values"
+	"i18n.bundleName": "mainFrameStrings"
+	"i18n.keyPrefix": "mainFrame"
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.intellij.uiDesigner.core.GridLayoutManager ) {
+			"$columnCount": 1
+			"$rowCount": 1
+		} ) {
+			name: "this"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 135, 0 )
+			"size": new java.awt.Dimension( 935, 650 )
+		} )
+	}
+}

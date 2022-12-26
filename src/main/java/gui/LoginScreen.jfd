@@ -1,0 +1,70 @@
+JFDML JFormDesigner: "8.0.1.0.199" Java: "17.0.5" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundlePackage": "values"
+	"i18n.bundleName": "mainFrameStrings"
+	"i18n.keyPrefix": "LoginScreen"
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.intellij.uiDesigner.core.GridLayoutManager ) {
+			"$columnCount": 1
+			"$rowCount": 3
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.intellij.uiDesigner.core.GridLayoutManager ) {
+				"$columnCount": 2
+				"$rowCount": 4
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "userNametextField"
+					"border": new javax.swing.plaf.metal.MetalBorders$ButtonBorder
+				}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
+					"minimumSize": new java.awt.Dimension( 200, 50 )
+					"preferredSize": new java.awt.Dimension( 200, 50 )
+					"fill": 1
+				} )
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
+					name: "passwordField"
+				}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
+					"row": 1
+					"fill": 1
+					"minimumSize": new java.awt.Dimension( 200, 50 )
+					"preferredSize": new java.awt.Dimension( 200, 50 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "errorLabel"
+					"background": new java.awt.Color( 255, 0, 0, 255 )
+					"foreground": new java.awt.Color( 0, 204, 0, 255 )
+				}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
+					"row": 2
+					"preferredSize": new java.awt.Dimension( 200, 50 )
+					"minimumSize": new java.awt.Dimension( 200, 50 )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "loginButton"
+					"text": new FormMessage( null, "LoginScreen.loginButton.text" )
+				}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
+					"row": 3
+				} )
+			}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator1"
+			}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
+				"row": 1
+				"fill": 1
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "signupScreenButton"
+				"text": new FormMessage( null, "LoginScreen.signupScreenButton.text" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "signupScreen", true ) )
+			}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
+				"row": 2
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}
