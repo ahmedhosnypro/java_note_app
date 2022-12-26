@@ -10,6 +10,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.plaf.metal.*;
 
+import authentication.user.UsersDataBase;
 import com.intellij.uiDesigner.core.*;
 import note.ApplicationRunner;
 
@@ -25,11 +26,32 @@ public class LoginScreen extends JPanel {
         ApplicationRunner.getMainFrame().setMainContainer(new RegisterScreen());
     }
 
+    private void login(ActionEvent e) {
+        String username = userNameTextField.getText();
+        String password = Arrays.toString(passwordField.getPassword());
+        if (username.isEmpty() || username.isBlank() || password.isEmpty() || password.isBlank()) {
+            errorLabel.setText("Please fill all fields");
+        } else {
+            if (UsersDataBase.isUserExist(username)) {
+                if (UsersDataBase.isPasswordCorrect(username, password)) {
+                    ApplicationRunner.getMainFrame().setMainContainer(new NoteScreen(username));
+                } else {
+                    errorLabel.setText("Incorrect password");
+                }
+            } else {
+                errorLabel.setText("User not found");
+            }
+        }
+
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         ResourceBundle bundle = ResourceBundle.getBundle("values.mainFrameStrings");
         panel1 = new JPanel();
-        userNametextField = new JTextField();
+        userNameLabel = new JLabel();
+        userNameTextField = new JTextField();
+        passwordLabel = new JLabel();
         passwordField = new JPasswordField();
         errorLabel = new JLabel();
         loginButton = new JButton();
@@ -43,14 +65,32 @@ public class LoginScreen extends JPanel {
         {
             panel1.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
 
-            //---- userNametextField ----
-            userNametextField.setBorder(new MetalBorders.ButtonBorder());
-            panel1.add(userNametextField, new GridConstraints(0, 0, 1, 1,
+            //---- userNameLabel ----
+            userNameLabel.setText(bundle.getString("LoginScreen.userNameLabel.text"));
+            userNameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+            panel1.add(userNameLabel, new GridConstraints(0, 0, 1, 1,
+                GridConstraints.ANCHOR_NORTHEAST, GridConstraints.FILL_NONE,
+                GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
+                GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
+                null, null, null));
+
+            //---- userNameTextField ----
+            userNameTextField.setBorder(new MetalBorders.ButtonBorder());
+            panel1.add(userNameTextField, new GridConstraints(0, 1, 1, 1,
                 GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 new Dimension(200, 50), new Dimension(200, 50), null));
-            panel1.add(passwordField, new GridConstraints(1, 0, 1, 1,
+
+            //---- passwordLabel ----
+            passwordLabel.setText(bundle.getString("LoginScreen.passwordLabel.text"));
+            passwordLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+            panel1.add(passwordLabel, new GridConstraints(1, 0, 1, 1,
+                GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE,
+                GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
+                GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
+                null, null, null));
+            panel1.add(passwordField, new GridConstraints(1, 1, 1, 1,
                 GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
@@ -59,7 +99,7 @@ public class LoginScreen extends JPanel {
             //---- errorLabel ----
             errorLabel.setBackground(Color.red);
             errorLabel.setForeground(new Color(0x00cc00));
-            panel1.add(errorLabel, new GridConstraints(2, 0, 1, 1,
+            panel1.add(errorLabel, new GridConstraints(2, 1, 1, 1,
                 GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
@@ -67,8 +107,12 @@ public class LoginScreen extends JPanel {
 
             //---- loginButton ----
             loginButton.setText(bundle.getString("LoginScreen.loginButton.text"));
-            panel1.add(loginButton, new GridConstraints(3, 0, 1, 1,
-                GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE,
+            loginButton.addActionListener(e -> {
+			login(e);
+			login(e);
+		});
+            panel1.add(loginButton, new GridConstraints(3, 1, 1, 1,
+                GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_NONE,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 null, null, null));
@@ -88,7 +132,7 @@ public class LoginScreen extends JPanel {
         signupScreenButton.setText(bundle.getString("LoginScreen.signupScreenButton.text"));
         signupScreenButton.addActionListener(e -> signupScreen(e));
         add(signupScreenButton, new GridConstraints(2, 0, 1, 1,
-            GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE,
+            GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
             null, null, null));
@@ -97,7 +141,9 @@ public class LoginScreen extends JPanel {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JPanel panel1;
-    private JTextField userNametextField;
+    private JLabel userNameLabel;
+    private JTextField userNameTextField;
+    private JLabel passwordLabel;
     private JPasswordField passwordField;
     private JLabel errorLabel;
     private JButton loginButton;

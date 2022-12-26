@@ -24,9 +24,8 @@ dependencies {
     implementation group: 'com.jgoodies', name: 'jgoodies-forms', version: '1.9.0'
     implementation group: 'com.intellij', name: 'forms_rt', version: '7.0.3'
     implementation group: 'org.webjars.bowergithub.polymerelements', name: 'iron-flex-layout', version: '3.0.1'
-
     implementation group: 'org.webjars.bowergithub.polymerelements', name: 'iron-icon', version: '3.0.1'
-
+    implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.36.0.3'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }

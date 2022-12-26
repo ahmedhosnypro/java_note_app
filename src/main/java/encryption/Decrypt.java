@@ -9,9 +9,7 @@ public abstract class Decrypt {
         this.ciphertext = ciphertext;
     }
 
-    abstract String decrypt();
-
-
+    public abstract String decrypt();
 }
 
 class DeShift extends Decrypt {
@@ -21,7 +19,7 @@ class DeShift extends Decrypt {
     }
 
     @Override
-    String decrypt() {
+    public String decrypt() {
         StringBuilder sb = new StringBuilder();
         if (key == 12)
             key += 2;
@@ -49,20 +47,3 @@ class DeShift extends Decrypt {
     }
 }
 
-class DeShiftUnicode extends Decrypt {
-
-    public DeShiftUnicode(int key, String ciphertext) {
-        super(key, ciphertext);
-    }
-
-    @Override
-    String decrypt() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < ciphertext.length(); i++) {
-            char c = ciphertext.charAt(i);
-            char newChar = (char) (c - key);
-            sb.append(newChar);
-        }
-        return sb.toString();
-    }
-}

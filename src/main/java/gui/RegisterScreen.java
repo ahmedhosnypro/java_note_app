@@ -6,10 +6,18 @@ package gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.*;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.event.*;
+
+import authentication.user.UsersDataBase;
 import com.intellij.uiDesigner.core.*;
 import note.ApplicationRunner;
+
+import static authentication.user.UsernameChecker.isValidUserName;
+import static authentication.user.UsersDataBase.isUserExist;
+import static java.lang.Thread.sleep;
 
 /**
  * @author AHMEDHOSNY
@@ -21,6 +29,25 @@ public class RegisterScreen extends JPanel {
 
     private void loginScreen(ActionEvent e) {
         ApplicationRunner.getMainFrame().setMainContainer(new LoginScreen());
+    }
+
+    private void singup(ActionEvent e) {
+        String username = userNameTextField.getText();
+        String password = Arrays.toString(passwordField.getPassword());
+        String password2 = Arrays.toString(repasswordField.getPassword());
+        if (username.isEmpty() || username.isBlank() || password.isEmpty() || password.isBlank() || password2.isEmpty() || password2.isBlank()) {
+            errorLabel.setText("Please fill all fields");
+        } else if (!password.equals(password2)) {
+            passwordErrorLabel.setText("Passwords don't match");
+        } else if (!isValidUserName(username)) {
+            userNameErrorLabel.setText("Invalid username");
+        } else if (isUserExist(username)) {
+            userNameErrorLabel.setText("Username already exist");
+        } else {
+            UsersDataBase.addUser(username, password);
+            JOptionPane.showMessageDialog(null, "Account created successfully");
+            ApplicationRunner.getMainFrame().setMainContainer(new LoginScreen());
+        }
     }
 
     private void initComponents() {
@@ -35,6 +62,7 @@ public class RegisterScreen extends JPanel {
         rePasswordLabel = new JLabel();
         repasswordField = new JPasswordField();
         passwordErrorLabel = new JLabel();
+        errorLabel = new JLabel();
         singupButton = new JButton();
         separator1 = new JSeparator();
         loginScreenButton = new JButton();
@@ -44,7 +72,7 @@ public class RegisterScreen extends JPanel {
 
         //======== signupPanel ========
         {
-            signupPanel.setLayout(new GridLayoutManager(6, 2, new Insets(0, 0, 0, 0), -1, -1, false, true));
+            signupPanel.setLayout(new GridLayoutManager(5, 3, new Insets(0, 0, 0, 0), -1, -1, false, true));
 
             //---- label2 ----
             label2.setText(bundle.getString("SingupScreen.label2.text"));
@@ -61,10 +89,9 @@ public class RegisterScreen extends JPanel {
                 new Dimension(200, 36), null, null));
 
             //---- userNameErrorLabel ----
-            userNameErrorLabel.setText(bundle.getString("SingupScreen.userNameErrorLabel.text"));
             userNameErrorLabel.setHorizontalAlignment(SwingConstants.LEFT);
             userNameErrorLabel.setForeground(new Color(0xff0033));
-            signupPanel.add(userNameErrorLabel, new GridConstraints(1, 1, 1, 1,
+            signupPanel.add(userNameErrorLabel, new GridConstraints(0, 2, 1, 1,
                 GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
@@ -73,12 +100,12 @@ public class RegisterScreen extends JPanel {
             //---- passwordlabel ----
             passwordlabel.setText(bundle.getString("SingupScreen.passwordlabel.text"));
             passwordlabel.setHorizontalAlignment(SwingConstants.RIGHT);
-            signupPanel.add(passwordlabel, new GridConstraints(2, 0, 1, 1,
+            signupPanel.add(passwordlabel, new GridConstraints(1, 0, 1, 1,
                 GridConstraints.ANCHOR_NORTHEAST, GridConstraints.FILL_NONE,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 null, null, null));
-            signupPanel.add(passwordField, new GridConstraints(2, 1, 1, 1,
+            signupPanel.add(passwordField, new GridConstraints(1, 1, 1, 1,
                 GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_NONE,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
@@ -87,12 +114,12 @@ public class RegisterScreen extends JPanel {
             //---- rePasswordLabel ----
             rePasswordLabel.setText(bundle.getString("SingupScreen.rePasswordLabel.text"));
             rePasswordLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-            signupPanel.add(rePasswordLabel, new GridConstraints(3, 0, 1, 1,
+            signupPanel.add(rePasswordLabel, new GridConstraints(2, 0, 1, 1,
                 GridConstraints.ANCHOR_NORTHEAST, GridConstraints.FILL_NONE,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 null, null, null));
-            signupPanel.add(repasswordField, new GridConstraints(3, 1, 1, 1,
+            signupPanel.add(repasswordField, new GridConstraints(2, 1, 1, 1,
                 GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_NONE,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
@@ -101,15 +128,23 @@ public class RegisterScreen extends JPanel {
             //---- passwordErrorLabel ----
             passwordErrorLabel.setHorizontalAlignment(SwingConstants.CENTER);
             passwordErrorLabel.setForeground(new Color(0xff0033));
-            signupPanel.add(passwordErrorLabel, new GridConstraints(4, 0, 1, 2,
+            signupPanel.add(passwordErrorLabel, new GridConstraints(2, 2, 1, 1,
                 GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW | GridConstraints.SIZEPOLICY_WANT_GROW,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW | GridConstraints.SIZEPOLICY_WANT_GROW,
-                new Dimension(200, 50), new Dimension(200, 50), null));
+                new Dimension(120, 50), new Dimension(120, 50), null, 0, true));
+
+            //---- errorLabel ----
+            errorLabel.setForeground(new Color(0xff0033));
+            signupPanel.add(errorLabel, new GridConstraints(3, 1, 1, 1,
+                GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL,
+                GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
+                GridConstraints.SIZEPOLICY_FIXED,
+                null, null, null));
 
             //---- singupButton ----
             singupButton.setText(bundle.getString("SingupScreen.singupButton.text"));
-            signupPanel.add(singupButton, new GridConstraints(5, 0, 1, 2,
+            signupPanel.add(singupButton, new GridConstraints(4, 1, 1, 1,
                 GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
@@ -130,7 +165,7 @@ public class RegisterScreen extends JPanel {
         loginScreenButton.setText(bundle.getString("SingupScreen.loginScreenButton.text"));
         loginScreenButton.addActionListener(e -> loginScreen(e));
         add(loginScreenButton, new GridConstraints(3, 0, 1, 1,
-            GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE,
+            GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
             null, null, null));
@@ -147,6 +182,7 @@ public class RegisterScreen extends JPanel {
     private JLabel rePasswordLabel;
     private JPasswordField repasswordField;
     private JLabel passwordErrorLabel;
+    private JLabel errorLabel;
     private JButton singupButton;
     private JSeparator separator1;
     private JButton loginScreenButton;

@@ -8,7 +8,7 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.intellij.uiDesigner.core.GridLayoutManager ) {
-			"$columnCount": 2
+			"$columnCount": 1
 			"$rowCount": 2
 			"hGap": 5
 		} ) {
@@ -30,45 +30,49 @@ new FormModel {
 					"preferredSize": new java.awt.Dimension( 50, 50 )
 					"hSizePolicy": 7
 				} )
-				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-					name: "notesScrollPane"
-					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.intellij.uiDesigner.core.GridLayoutManager ) {
-						"$columnCount": 2
-						"$rowCount": 1
-					} ) {
-						name: "notesContainer"
-					} )
+				add( new FormComponent( "gui.NoteGrid" ) {
+					name: "notesContainer"
 				}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
 					"row": 1
 					"hSizePolicy": 7
 					"vSizePolicy": 7
 					"fill": 3
-					"minimumSize": new java.awt.Dimension( 600, 600 )
-					"preferredSize": new java.awt.Dimension( 600, 600 )
+					"minimumSize": new java.awt.Dimension( 400, 400 )
+					"preferredSize": new java.awt.Dimension( 400, 400 )
 				} )
 			}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
-				"colSpan": 2
 				"hSizePolicy": 7
 				"vSizePolicy": 7
 				"fill": 3
 			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "addNoteButton"
-				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/add.png" )
-				"selectedIcon": sfield com.jformdesigner.model.FormObject NULL_VALUE
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "barPanel"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "logoutButton"
+					"text": new FormMessage( null, "NoteScreen.logoutButton.text" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "logout", true ) )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "West"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "addNoteButton"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/add.png" )
+					"selectedIcon": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					"maximumSize": new java.awt.Dimension( 24, 24 )
+					"minimumSize": new java.awt.Dimension( 24, 24 )
+					"preferredSize": new java.awt.Dimension( 24, 24 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addNote", true ) )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "East"
+				} )
 			}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
 				"row": 1
-				"column": 1
-				"anchor": 6
-				"hSizePolicy": 0
-				"vSizePolicy": 0
-				"minimumSize": new java.awt.Dimension( 24, 24 )
-				"preferredSize": new java.awt.Dimension( 24, 24 )
-				"maximumSize": new java.awt.Dimension( 24, 24 )
+				"fill": 3
+				"useParentLayout": true
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 1165, 785 )
+			"location": new java.awt.Point( 210, 0 )
+			"size": new java.awt.Dimension( 1045, 755 )
 		} )
 	}
 }

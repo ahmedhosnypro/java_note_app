@@ -17,13 +17,29 @@ new FormModel {
 				"$rowCount": 4
 			} ) {
 				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "userNameLabel"
+					"text": new FormMessage( null, "LoginScreen.userNameLabel.text" )
+					"horizontalAlignment": 4
+				}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
+					"anchor": 5
+				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "userNametextField"
+					name: "userNameTextField"
 					"border": new javax.swing.plaf.metal.MetalBorders$ButtonBorder
 				}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
 					"minimumSize": new java.awt.Dimension( 200, 50 )
 					"preferredSize": new java.awt.Dimension( 200, 50 )
 					"fill": 1
+					"column": 1
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "passwordLabel"
+					"text": new FormMessage( null, "LoginScreen.passwordLabel.text" )
+					"horizontalAlignment": 4
+				}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
+					"row": 1
+					"anchor": 9
 				} )
 				add( new FormComponent( "javax.swing.JPasswordField" ) {
 					name: "passwordField"
@@ -32,6 +48,7 @@ new FormModel {
 					"fill": 1
 					"minimumSize": new java.awt.Dimension( 200, 50 )
 					"preferredSize": new java.awt.Dimension( 200, 50 )
+					"column": 1
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "errorLabel"
@@ -41,12 +58,17 @@ new FormModel {
 					"row": 2
 					"preferredSize": new java.awt.Dimension( 200, 50 )
 					"minimumSize": new java.awt.Dimension( 200, 50 )
+					"column": 1
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "loginButton"
 					"text": new FormMessage( null, "LoginScreen.loginButton.text" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "login", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "login", true ) )
 				}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
 					"row": 3
+					"column": 1
+					"anchor": 1
 				} )
 			}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) )
 			add( new FormComponent( "javax.swing.JSeparator" ) {
@@ -61,6 +83,7 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "signupScreen", true ) )
 			}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
 				"row": 2
+				"anchor": 1
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
