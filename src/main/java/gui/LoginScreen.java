@@ -33,8 +33,9 @@ public class LoginScreen extends JPanel {
             errorLabel.setText("Please fill all fields");
         } else {
             if (UsersDataBase.isUserExist(username)) {
+                int userId = UsersDataBase.getUserId(username);
                 if (UsersDataBase.isPasswordCorrect(username, password)) {
-                    ApplicationRunner.getMainFrame().setMainContainer(new NoteScreen(username));
+                    ApplicationRunner.getMainFrame().setMainContainer(new NoteScreen(userId));
                 } else {
                     errorLabel.setText("Incorrect password");
                 }

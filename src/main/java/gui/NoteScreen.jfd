@@ -28,17 +28,18 @@ new FormModel {
 					"fill": 1
 					"minimumSize": new java.awt.Dimension( 200, 50 )
 					"preferredSize": new java.awt.Dimension( 50, 50 )
-					"hSizePolicy": 7
+					"vSizePolicy": 0
 				} )
-				add( new FormComponent( "gui.NoteGrid" ) {
-					name: "notesContainer"
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "notesScrollPane"
+					add( new FormComponent( "gui.NotesGrid" ) {
+						name: "notesGrid"
+					} )
 				}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
-					"row": 1
+					"row": 2
 					"hSizePolicy": 7
 					"vSizePolicy": 7
 					"fill": 3
-					"minimumSize": new java.awt.Dimension( 400, 400 )
-					"preferredSize": new java.awt.Dimension( 400, 400 )
 				} )
 			}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
 				"hSizePolicy": 7

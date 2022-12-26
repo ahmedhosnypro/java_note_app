@@ -31,9 +31,8 @@ public class MainFrame extends JFrame {
 
         addMainContainer(contentPane);
 
-        pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(WIDTH, HEIGHT);
+        setExtendedState(Frame.MAXIMIZED_BOTH);
         setBackground(Color.BLACK);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -44,7 +43,8 @@ public class MainFrame extends JFrame {
                 GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW | GridConstraints.SIZEPOLICY_WANT_GROW,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW | GridConstraints.SIZEPOLICY_WANT_GROW,
-                new Dimension(600,600), new Dimension(600,600), null));
+                new Dimension(600, 600), new Dimension(600, 600), null));
+        setExtendedState(Frame.MAXIMIZED_BOTH);
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
@@ -58,5 +58,6 @@ public class MainFrame extends JFrame {
         mainContainer = container;
         addMainContainer(contentPane);
         pack();
+        setExtendedState(Frame.MAXIMIZED_BOTH);
     }
 }
