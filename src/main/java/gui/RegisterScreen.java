@@ -144,6 +144,7 @@ public class RegisterScreen extends JPanel {
 
             //---- singupButton ----
             singupButton.setText(bundle.getString("SingupScreen.singupButton.text"));
+            singupButton.addActionListener(e -> singup(e));
             signupPanel.add(singupButton, new GridConstraints(4, 1, 1, 1,
                 GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE,
                 GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,

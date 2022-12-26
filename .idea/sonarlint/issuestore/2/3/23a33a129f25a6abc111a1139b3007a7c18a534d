@@ -1,0 +1,15 @@
+
+|
+java:S1450L"`Remove the "loginScreenButton" field and declare it as a local variable in the relevant methods.(Í»—?8ÄöÃöÔ0
+ƒ
+java:S1450M"aRemove the "signupScreenButton" field and declare it as a local variable in the relevant methods.(«êğŸüÿÿÿÿ8€¯ÄöÔ0
+{
+java:S1450K"YRemove the "titleLabel" field and declare it as a local variable in the relevant methods.(ãçÆùÿÿÿÿ8·ÒîöÔ0
+E
+java:S1172"(Remove this unused method parameter "e".(©­ê8œŠ‡öÔ0
+J
+java:S1172"(Remove this unused method parameter "e".(”¨”øÿÿÿÿ8£“ÅöÔ0
+Z
+java:S16128"8Replace this lambda with method reference 'this::login'.(‘›Öİøÿÿÿÿ8ï„ÇöÔ0
+a
+java:S1612A"?Replace this lambda with method reference 'this::signupScreen'.(Ç‹¨€ÿÿÿÿÿ8ğ„ÇöÔ0

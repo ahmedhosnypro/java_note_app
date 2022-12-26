@@ -40,6 +40,7 @@ public class NoteDetailsDialog extends JDialog {
 
     private void deleteNote(ActionEvent e) {
         UsersDataBase.deleteNoteById(noteCard.getNote().getId());
+        dispose();
         noteScreen.updateNoteGrid();
     }
 
@@ -67,8 +68,8 @@ public class NoteDetailsDialog extends JDialog {
             {
                 buttonBar.setBorder(new EmptyBorder(12, 0, 0, 0));
                 buttonBar.setLayout(new GridBagLayout());
-                ((GridBagLayout)buttonBar.getLayout()).columnWidths = new int[] {0, 85, 80};
-                ((GridBagLayout)buttonBar.getLayout()).columnWeights = new double[] {1.0, 0.0, 0.0};
+                ((GridBagLayout) buttonBar.getLayout()).columnWidths = new int[]{0, 85, 80};
+                ((GridBagLayout) buttonBar.getLayout()).columnWeights = new double[]{1.0, 0.0, 0.0};
 
                 //---- deleteNoteButton ----
                 deleteNoteButton.setText(bundle.getString("NoteDetailsDialog.deleteNoteButton.text"));
@@ -77,21 +78,21 @@ public class NoteDetailsDialog extends JDialog {
                 deleteNoteButton.setPreferredSize(new Dimension(50, 30));
                 deleteNoteButton.addActionListener(e -> deleteNote(e));
                 buttonBar.add(deleteNoteButton, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 0, 0, 5), 0, 0));
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 0, 5), 0, 0));
 
                 //---- cancelButton ----
                 cancelButton.setText(bundle.getString("NoteDetailsDialog.cancelButton.text"));
                 buttonBar.add(cancelButton, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 0, 0, 5), 0, 0));
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 0, 5), 0, 0));
 
                 //---- updateNoteButton ----
                 updateNoteButton.setText(bundle.getString("NoteDetailsDialog.updateNoteButton.text"));
                 updateNoteButton.addActionListener(e -> updateNote(e));
                 buttonBar.add(updateNoteButton, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 0, 0, 0), 0, 0));
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 0, 0), 0, 0));
             }
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
 

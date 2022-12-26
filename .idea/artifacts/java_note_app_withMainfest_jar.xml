@@ -1,0 +1,43 @@
+<component name="ArtifactManager">
+  <artifact name="java_note_app_withMainfest:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/java_note_app_withMainfest_jar</output-path>
+    <root id="root">
+      <element id="archive" name="java_note_app.jar">
+        <element id="module-output" name="java_note_app.main" />
+      </element>
+      <element id="library" level="project" name="Gradle: org.webjars.bowergithub.polymerelements:iron-icon:3.0.1" />
+      <element id="library" level="project" name="Gradle: com.jgoodies:jgoodies-forms:1.9.0" />
+      <element id="library" level="project" name="Gradle: org.xerial:sqlite-jdbc:3.36.0.3" />
+      <element id="library" level="project" name="Gradle: com.beust:jcommander:1.78" />
+      <element id="library" level="project" name="Gradle: com.miglayout:miglayout-swing:5.3" />
+      <element id="library" level="project" name="Gradle: asm:asm-commons:3.0" />
+      <element id="library" level="project" name="Gradle: org.junit.platform:junit-platform-commons:1.8.1" />
+      <element id="library" level="project" name="Gradle: com.formdev:flatlaf:3.0" />
+      <element id="library" level="project" name="Gradle: com.google.guava:failureaccess:1.0.1" />
+      <element id="library" level="project" name="Gradle: com.formdev:flatlaf-fonts-roboto:2.137" />
+      <element id="library" level="project" name="Gradle: org.webjars.bowergithub.polymerelements:iron-flex-layout:3.0.1" />
+      <element id="library" level="project" name="Gradle: org.junit.jupiter:junit-jupiter-engine:5.8.1" />
+      <element id="library" level="project" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" />
+      <element id="library" level="project" name="Gradle: com.formdev:flatlaf-extras:3.0" />
+      <element id="library" level="project" name="Gradle: jdom:jdom:1.0" />
+      <element id="library" level="project" name="Gradle: com.google.code.gson:gson:2.8.9" />
+      <element id="library" level="project" name="Gradle: com.jgoodies:jgoodies-common:1.8.1" />
+      <element id="library" level="project" name="Gradle: com.google.j2objc:j2objc-annotations:1.3" />
+      <element id="library" level="project" name="Gradle: com.jgoodies:forms:1.1-preview" />
+      <element id="library" level="project" name="Gradle: com.google.errorprone:error_prone_annotations:2.11.0" />
+      <element id="library" level="project" name="Gradle: com.intellij:forms_rt:7.0.3" />
+      <element id="library" level="project" name="Gradle: com.formdev:flatlaf-intellij-themes:3.0" />
+      <element id="library" level="project" name="Gradle: com.miglayout:miglayout-core:5.3" />
+      <element id="library" level="project" name="Gradle: com.google.guava:guava:31.1-jre" />
+      <element id="library" level="project" name="Gradle: org.junit.platform:junit-platform-engine:1.8.1" />
+      <element id="library" level="project" name="Gradle: org.checkerframework:checker-qual:3.12.0" />
+      <element id="library" level="project" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" />
+      <element id="library" level="project" name="Gradle: asm:asm:3.0" />
+      <element id="library" level="project" name="Gradle: com.formdev:flatlaf-swingx:3.0" />
+      <element id="library" level="project" name="Gradle: org.junit.jupiter:junit-jupiter-api:5.8.1" />
+      <element id="library" level="project" name="Gradle: com.formdev:svgSalamander:1.1.3" />
+      <element id="library" level="project" name="Gradle: org.opentest4j:opentest4j:1.2.0" />
+      <element id="library" level="project" name="Gradle: asm:asm-tree:3.0" />
+    </root>
+  </artifact>
+</component>
